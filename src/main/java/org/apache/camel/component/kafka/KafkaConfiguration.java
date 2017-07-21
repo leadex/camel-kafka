@@ -31,6 +31,9 @@ import org.apache.kafka.common.config.SslConfigs;
 @UriParams
 public class KafkaConfiguration {
 
+    @UriParam(label = "consumer")
+    private Integer startOffset = -1;
+
     @UriPath @Metadata(required = "true")
     private String brokers;
 
@@ -357,6 +360,14 @@ public class KafkaConfiguration {
             // Kafka expects all properties as String
             props.put(key, value.toString());
         }
+    }
+    
+    public Integer getStartOffset() {
+        return startOffset;
+    }
+    
+    public void setStartOffset(Integer value) {
+        this.startOffset = value;
     }
 
     public String getGroupId() {

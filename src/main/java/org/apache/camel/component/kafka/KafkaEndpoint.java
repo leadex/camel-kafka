@@ -28,6 +28,7 @@ import org.apache.camel.Producer;
 import org.apache.camel.impl.DefaultEndpoint;
 import org.apache.camel.spi.UriEndpoint;
 import org.apache.camel.spi.UriParam;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 /**
@@ -111,6 +112,14 @@ public class KafkaEndpoint extends DefaultEndpoint implements MultipleConsumersS
     // Delegated properties from the configuration
     //-------------------------------------------------------------------------
 
+    public Integer getStartOffset() {
+        return configuration.getStartOffset();
+    }
+    
+    public void setStartOffset(Integer value) {
+        configuration.setStartOffset(value);
+    }
+    
     public Properties createProducerProperties() {
         return configuration.createProducerProperties();
     }
